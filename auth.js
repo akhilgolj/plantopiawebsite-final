@@ -20,7 +20,7 @@ function handleCredentialResponse(response) {
     showWelcomeNotification(user);
 
     // Send user data to backend
-    fetch('https://plantopia-1.onrender.com/api/users', {
+    fetch('https://plantopiawebsite-final.onrender.com/api/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

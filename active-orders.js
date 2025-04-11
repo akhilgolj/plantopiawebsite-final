@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        fetch(`https://plantopia-1.onrender.com/api/users/${currentUser.id}/reservations`)
+        fetch(`https://plantopiawebsite-final.onrender.com/api/users/${currentUser.id}/reservations`)
             .then(response => {
                 if (!response.ok) throw new Error('Failed to fetch reservations');
                 return response.json();

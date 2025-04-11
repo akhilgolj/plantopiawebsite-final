@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div id="active-orders" class="tab-content active"></div>
         <div id="previous-orders" class="tab-content" style="display: none;"></div>
         <div id="reservations" class="tab-content" style="display: none;"></div>
-    `;
+    `; 
 
     fetchOrders();
     fetchReservations();

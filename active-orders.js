@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function fetchOrders() {
         const currentUser = JSON.parse(localStorage.getItem('currentUser')) || { id: 'default-user-id' };
-        fetch(`https://plantopia-1.onrender.com/api/users/${currentUser.id}/orders`)
+        fetch(`https://plantopiawebsite-final.onrender.com/api/users/${currentUser.id}/orders`)
             .then(response => {
                 if (!response.ok) throw new Error('Failed to fetch orders');
                 return response.json();
@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
             button.addEventListener('click', (e) => {
                 const orderId = e.target.getAttribute('data-order-id');
                 const currentUser = JSON.parse(localStorage.getItem('currentUser')) || { id: 'default-user-id' };
-                fetch(`https://plantopia-1.onrender.com/api/users/${currentUser.id}/orders/${orderId}/close`, {
+                fetch(`https://plantopiawebsite-final.onrender.com/api/users/${currentUser.id}/orders/${orderId}/close`, {
                     method: 'PUT'
                 })
                 .then(response => {

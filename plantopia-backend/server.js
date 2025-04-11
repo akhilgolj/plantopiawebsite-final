@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 require('dotenv').config();
 
 const app = express();
-app.use(cors({ origin: 'https://plantopia-2.onrender.com' })); // Match your frontend origin
+app.use(cors({ origin: 'https://plantopia-w5m1.onrender.com' })); // Match your frontend origin
 app.use(express.json());
 
 const PORT = process.env.PORT || 5000;

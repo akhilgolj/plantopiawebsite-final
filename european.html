@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>European Cuisine - Plantopia</title>
+        <link rel="icon" href="images/logo-final.png" type="image/png">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Iansui&display=swap" rel="stylesheet">
+        <!-- Add Font Awesome for icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <!-- Add Google Sign-In script -->
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <script src="add-to-cart.js" defer></script>
+        <script src="auth.js" defer></script>
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <div class="header-container">
+                <button class="hamburger" aria-label="Toggle navigation">☰</button>
+                <div class="logo-title-container">
+                    <img src="images/logo-final.png" alt="LOGO 2 IMAGE" class="logo">
+                </div>
+                <nav class="nav-right">
+                    <a href="index.html">HOME</a>
+                    <a href="about.html#about-us">ABOUT US</a>
+                    <div class="dropdown">
+                        <a href="#" class="dropbtn">OUR CUISINES ▼</a>
+                        <div class="dropdown-content">
+                            <a href="american.html">AMERICAN</a>
+                            <a href="Indian.html">INDIAN</a>
+                            <a href="european.html">EUROPEAN</a>
+                            <a href="chinese.html">CHINESE</a>
+                            <a href="japanese.html">JAPANESE</a>
+                            <a href="korean.html">KOREAN</a>
+                        </div>
+                    </div>
+                    <a href="tablereserve.html">RESERVE TABLE</a>
+                    <a href="source-bib.html">REFERENCE PAGE</a>
+                    <div id="cart-icon" class="cart">🛒
+                        <span id="cart-count" class="cart-item-count">0</span>
+                    </div>
+                    <div id="user-profile" class="user-profile" style="display: none;">
+                        <div class="user-dropdown">
+                            <div class="user-name-dropbtn">
+                                <img id="user-picture" class="user-picture" src="images/guest.jpg" alt="Profile Picture">
+                                <span id="user-name"></span>
+                                <span class="dropdown-arrow">▼</span>
+                            </div>
+                            <div class="user-dropdown-content">
+                                <a href="active-orders.html">Your Orders</a>
+                                <a href="#" id="sign-out-link" onclick="signOut()">Sign Out</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="auth-options" class="dropdown">
+                        <a href="#" class="dropbtn">SIGN IN ▼</a>
+                        <div class="dropdown-content">
+                            <div class="g_id_signin"
+                                data-type="standard"
+                                data-size="large"
+                                data-theme="outline"
+                                data-text="sign_in_with"
+                                data-shape="rectangular"
+                                data-logo_alignment="left">
+                            </div>
+                            <a href="#" id="guest-signin">Sign in as Guest</a>
+                        </div>
+                    </div>
+                    <div id="g_id_onload"
+                        data-client_id="393903945324-dkvoequ09ml50t2lbfjhf5rped7sijp4.apps.googleusercontent.com"
+                        data-callback="handleCredentialResponse"
+                        data-auto_prompt="false"
+                        data-ux_mode="popup"
+                        data-login_uri="http://127.0.0.1:5500">
+                    </div>
+                </nav>
+            </div>
+        </header>
+    
+        <!-- Guest Sign-in Popup -->
+        <div id="guest-popup" class="popup" style="display: none;">
+            <button class="popup-close" id="guest-popup-close">×</button>
+            <div class="popup-content">
+                <h2>Sign in as Guest</h2>
+                <input type="text" id="guest-name" placeholder="Enter your name" required />
+                <button id="guest-submit">Submit</button>
+                <button id="guest-cancel">Cancel</button>
+            </div>
+        </div>
+    
+        <!-- Welcome Notification Popup -->
+        <div id="welcome-notification" class="notification" style="display: none;">
+            <div class="notification-content">
+                <span id="welcome-message"></span>
+                <button id="close-notification">×</button>
+            </div>
+        </div>
+    <div class="menu">
+        <div class="heading">
+            <h2>— EUROPEAN MENU —</h2>
+        </div>
+        <div class="food-items">
+            <img src="images/spanish-tortilla.jpg" alt="Spanish Tortilla">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Spanish Tortilla</h5>
+                    <h5 class="price">$14.99</h5>
+                </div>
+                <p>A classic Spanish dish made with potatoes, and onions, slowly cooked to create a thick, hearty tortilla dish.</p>
+                <button class="add-to-cart-btn" data-name="Spanish Tortilla" data-price="14.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/greek-moussaka.jpg" alt="Greek Moussaka">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Greek Moussaka</h5>
+                    <h5 class="price">$16.99</h5>
+                </div>
+                <p>A layered casserole with eggplant, potatoes, and a creamy béchamel sauce, often baked to golden perfection.</p>
+                <button class="add-to-cart-btn" data-name="Greek Moussaka" data-price="16.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/italian-caprese-salad.jpg" alt="Caprese Salad">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Caprese Salad</h5>
+                    <h5 class="price">$11.99</h5>
+                </div>
+                <p>A refreshing Italian salad made with fresh tomatoes, mozzarella cheese, basil, olive oil, and a touch of balsamic vinegar.</p>
+                <button class="add-to-cart-btn" data-name="Caprese Salad" data-price="11.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/french-ratatouille.jpg" alt="French Ratatouille">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>French Ratatouille</h5>
+                    <h5 class="price">$15.99</h5>
+                </div>
+                <p>A vegetable medley of zucchini, eggplant, peppers, tomatoes, and onions, stewed together with fragrant herbs.</p>
+                <button class="add-to-cart-btn" data-name="French Ratatouille" data-price="15.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/german-sauerkraut-veggie.jpg" alt="Vegetarian Sauerkraut">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Vegetarian Sauerkraut</h5>
+                    <h5 class="price">$13.99</h5>
+                </div>
+                <p>A traditional German dish made with fermented cabbage, carrots, and a mix of spices, perfect for a tangy side dish.</p>
+                <button class="add-to-cart-btn" data-name="Vegetarian Sauerkraut" data-price="13.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/italian-gnocchi.jpg" alt="Potato Gnocchi">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Potato Gnocchi</h5>
+                    <h5 class="price">$14.99</h5>
+                </div>
+                <p>Soft potato dumplings served with a rich tomato or creamy sauce, and a sprinkle of fresh parmesan cheese.</p>
+                <button class="add-to-cart-btn" data-name="Potato Gnocchi" data-price="14.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/english-vegetarian-pie.jpg" alt="Vegetarian Shepherd's Pie">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Vegetarian Shepherd's Pie</h5>
+                    <h5 class="price">$16.50</h5>
+                </div>
+                <p>A hearty vegetarian version of the classic British dish, made with lentils and vegetables, topped with creamy mashed potatoes.</p>
+                <button class="add-to-cart-btn" data-name="Vegetarian Shepherd's Pie" data-price="16.50">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/portuguese-caldo-verde.jpg" alt="Caldo Verde">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Caldo Verde</h5>
+                    <h5 class="price">$12.50</h5>
+                </div>
+                <p>A traditional Portuguese soup made with collard greens, potatoes, and a touch of olive oil, perfect for a light, warm meal.</p>
+                <button class="add-to-cart-btn" data-name="Caldo Verde" data-price="12.50">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/swedish-veggie-kottbullar.jpg" alt="Swedish Veggie Köttbullar">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Swedish Veggie Köttbullar</h5>
+                    <h5 class="price">$13.99</h5>
+                </div>
+                <p>Vegetarian Swedish meatballs made from a mix of lentils and mushrooms, served with lingonberry sauce and mashed potatoes.</p>
+                <button class="add-to-cart-btn" data-name="Swedish Veggie Köttbullar" data-price="13.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/belgian-waffles.jpg" alt="Belgian Waffles">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Belgian Waffles</h5>
+                    <h5 class="price">$8.99</h5>
+                </div>
+                <p>Light and fluffy waffles, served with fresh fruit, whipped cream, and maple syrup for a sweet, indulgent treat.</p>
+                <button class="add-to-cart-btn" data-name="Belgian Waffles" data-price="8.99">Add To Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cart-slider" class="cart-slider">
+        <div class="cart-header">
+            <h2>SHOPPING CART</h2>
+            <button id="close-cart">×</button>
+        </div>
+        <div id="cart-items" class="cart-items"></div>
+        <div class="cart-footer">
+            <h3>Total: $<span id="cart-total">0.00</span></h3>
+            <a href="checkout.html"><button id="checkout-btn">CHECKOUT</button></a>
+        </div>
+    </div>
+
+
+    <footer>
+        <p>© 2025 University of Veggies. All rights reserved.</p>
+    </footer>
+</body>
+</html>

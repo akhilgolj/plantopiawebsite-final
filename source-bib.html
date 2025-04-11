@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantopia</title>
+    <link rel="icon" href="images/logo-final.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Iansui&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="add-to-cart.js" defer></script>
+    <script src="checkout.js" defer></script>
+    <script src="TABLE.js" defer></script>
+    <script src="auth.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <button class="hamburger" aria-label="Toggle navigation">☰</button>
+            <div class="logo-title-container">
+                <img src="images/logo-final.png" alt="LOGO 2 IMAGE" class="logo">
+            </div>
+            <nav class="nav-right">
+                <a href="index.html">HOME</a>
+                <a href="about.html#about-us">ABOUT US</a>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">OUR CUISINES ▼</a>
+                    <div class="dropdown-content">
+                        <a href="american.html">AMERICAN</a>
+                        <a href="Indian.html">INDIAN</a>
+                        <a href="european.html">EUROPEAN</a>
+                        <a href="chinese.html">CHINESE</a>
+                        <a href="japanese.html">JAPANESE</a>
+                        <a href="korean.html">KOREAN</a>
+                    </div>
+                </div>
+                <a href="tablereserve.html">RESERVE TABLE</a>
+                <a href="source-bib.html">REFERENCE PAGE</a>
+                <div id="cart-icon" class="cart">🛒
+                    <span id="cart-count" class="cart-item-count">0</span>
+                </div>
+                <div id="user-profile" class="user-profile" style="display: none;">
+                    <div class="user-dropdown">
+                        <div class="user-name-dropbtn">
+                            <img id="user-picture" class="user-picture" src="" alt="Profile Picture">
+                            <span id="user-name"></span>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="user-dropdown-content">
+                            <a href="active-orders.html">Your Orders</a>
+                            <a href="#" id="sign-out-link" onclick="signOut()">Sign Out</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="auth-options" class="dropdown">
+                    <a href="#" class="dropbtn">SIGN IN ▼</a>
+                    <div class="dropdown-content">
+                        <div class="g_id_signin"
+                            data-type="standard"
+                            data-size="large"
+                            data-theme="outline"
+                            data-text="sign_in_with"
+                            data-shape="rectangular"
+                            data-logo_alignment="left">
+                        </div>
+                        <a href="#" id="guest-signin">Sign in as Guest</a>
+                    </div>
+                </div>
+                <div id="g_id_onload"
+                    data-client_id="393903945324-dkvoequ09ml50t2lbfjhf5rped7sijp4.apps.googleusercontent.com"
+                    data-callback="handleCredentialResponse"
+                    data-auto_prompt="false"
+                    data-ux_mode="popup"
+                    data-login_uri="http://127.0.0.1:5500">
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+
+        <h1 class="source-head"><center>SOURCES & BIBLIOGRAPHY</center></h1>
+        <h2 class="source">
+            <center>
+            <a href="Copyright.pdf" target="_blank">Open Student Copyright Checklist PDF</a>
+            <br>
+            <a href="Worklog.pdf" target="_blank">Open Worklog PDF</a>
+            <br>
+            <a href="Bibliography.pdf" target="_blank">Open Bibliography PDF</a>
+            </center>
+        </h2>
+    </body>
+
+    <div id="cart-slider" class="cart-slider">
+        <div class="cart-header">
+            <h2>Shopping Cart</h2>
+            <button id="close-cart">&times;</button>
+        </div>
+        
+        <div id="cart-items" class="cart-items"></div>
+        <div class="cart-footer">
+            <h3>Total: $<span id="cart-total">0.00</span></h3>
+            <a href="checkout.html"><button id="checkout-btn">Checkout</button></a>
+        </div>
+    </div>
+</html>

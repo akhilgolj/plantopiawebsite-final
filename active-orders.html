@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Orders - Plantopia</title>
+    <link rel="icon" href="logo-final.png" type="image/png">
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Font Awesome 4.7.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="o.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Remixicon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Google Sign-In -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap 4 JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="active-orders.js" defer></script>
+    <script src="auth.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-title-container">
+                <img src="iamges/logo-final.png" alt="Plantopia Logo" class="logo">
+            </div>
+            <nav class="nav-right">
+                <a href="index.html">HOME</a>
+                <a href="about.html#about-us">ABOUT US</a>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">OUR CUISINES ▼</a>
+                    <div class="dropdown-content">
+                        <a href="american.html">AMERICAN</a>
+                        <a href="indian.html">INDIAN</a>
+                        <a href="european.html">EUROPEAN</a>
+                        <a href="chinese.html">CHINESE</a>
+                        <a href="japanese.html">JAPANESE</a>
+                        <a href="korean.html">KOREAN</a>
+                    </div>
+                </div>
+                <a href="tablereserve.html">RESERVE TABLE</a>
+                <a href="source-bib.html">REFERENCE PAGE</a>
+                
+                <div id="user-profile" class="user-profile" style="display: none;">
+                    <div class="user-dropdown">
+                        <div class="user-name-dropbtn">
+                            <img id="user-picture" class="user-picture" src="images/guest.jpg" alt="Profile Picture">
+                            <span id="user-name"></span>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="user-dropdown-content">
+                            <a href="active-orders.html">Your Orders</a>
+                            <a href="#" id="sign-out-link">Sign Out</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="g_id_onload"
+                     data-client_id="393903945324-dkvoequ09ml50t2lbfjhf5rped7sijp4.apps.googleusercontent.com"
+                     data-callback="handleCredentialResponse"
+                     data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin"
+                     data-type="standard"
+                     data-size="large"
+                     data-theme="outline"
+                     data-text="sign_in_with"
+                     data-shape="rectangular"
+                     data-logo_alignment="left">
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="order-history-section">
+            <h3>Active Orders</h3>
+            <div id="order-history-container"></div>
+        </section>
+
+        <section id="reservation-history-section">
+            
+            <div id="reservation-history-container"></div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2025 Veggie University. All Rights Reserved.</p>
+    </footer>
+
+    <div id="notification" class="notification"></div>
+</body>
+</html>

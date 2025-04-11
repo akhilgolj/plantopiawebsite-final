@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Veggie Restaurant</title>
+        <link rel="icon" href="images/logo-final.png" type="image/png">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
+        <script src="add-to-cart.js"></script>
+        <script src="checkout.js"></script>
+        <header>
+            <div class="header-container">
+                <div class="logo-title-container">
+    
+                    <img src="images/logo-final.jpg" alt="LOGO 2 IMAGE" class="logo">
+                    <h1 class="title" style= "font-family: 'Karla', Arial, Helvetica, sans-serif">Plantopia</h1>
+                </div>
+                <nav class="nav-right">
+                    <a href="index.html">HOME</a>
+                    <a href="about.html#about-us">ABOUT US</a>
+                    <a href="mission.html#mission"> CUISINES</a>
+                    <a href="source-bib.html">REFERENCE PAGE</a>
+                    <div id="cart-icon" class="cart">🛒
+                    <span id = "cart-count" class="cart-item-count">0</span>
+                </nav>
+            </div>
+        </header>
+</head>
+<body>
+    
+<div id="cart-slider" class="cart-slider">
+    <div class="cart-header">
+        <h2>Shopping Cart</h2>
+        <button id="close-cart">&times;</button>
+    </div>
+    
+    <div id="cart-items" class="cart-items"></div>
+    <div class="cart-footer">
+        <h3>Total: $<span id="cart-total">0.00</span></h3>
+        <a href="checkout.html"><button id="checkout-btn">Checkout</button></a>
+    </div>
+</div>
+</body>
+</html>

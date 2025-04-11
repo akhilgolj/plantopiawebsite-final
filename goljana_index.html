@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veggie Restaurant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
+ 
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-title-container">
+
+                <img src="logo-final.jpg" alt="LOGO 2 IMAGE" class="logo">
+                <h1 class="title" style= "font-family: 'Karla', Arial, Helvetica, sans-serif">Veggie Restaurant</h1>
+            </div>
+            <nav class="nav-right">
+                <a href="about.html#about-us">ABOUT US</a>
+                <a href="mission.html#mission">OUR MISSION</a>
+                <a href="checkout.html">CHECKOUT</a>
+                <a href="source-bib.html">REFRENCE PAGE</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section>
+            <h3 class="fade-in"><center>"Embracing a vegetarian lifestyle is a powerful choice for health, sustainability, and ethical living. Every plant-based meal supports a thriving planet and a compassionate future."</center></h3>
+            <section class="head">
+                <center>
+                <video autoplay muted infinite loop>
+                  <source src="veg-video.mp4" type="video/mp4">
+                </video>
+                </center>
+            </section>
+        </section>
+        <section>
+            <section class="head">
+                <center>
+                <video autoplay muted infinite loop id="myVideo">
+                  <source src="veg-video.mp4" type="video/mp4">
+                </video>
+                </center>
+            </section>
+        </section>
+    </div>
+    <div class="heading">
+        <h1><center>Our Departments</center></h1>
+    </div>
+   
+    <section class="departments">
+        <div class="department-images">
+
+            <div class="row">
+                <a href="american.html">
+                    <img src="american-food.png" alt="American Cuisine" class="department-img">
+                </a>
+
+                <a href="indian.html">
+                    <img src="indian-food.png" alt="Indian Cuisine" class="department-img">
+                </a>
+                    
+                <a href="european.html">
+                    <img src="european-food.png" alt="European Cuisine" class="department-img">
+                </a>
+            </div>
+            <div class="row">
+                
+                <a href="chinese.html">
+                    <img src="chinese-food.png" alt="Chinese Cuisine" class="department-img">
+                </a>
+                    
+                <a href="japanese.html">
+                    <img src="japanese-food.png" alt="Japanese Cuisine" class="department-img">
+                </a>
+
+                <a href="korean.html">
+                    <img src="korean-food.png" alt="Korean Cuisine" class="department-img">
+                </a>
+            </div>
+        </div>
+    </section>
+   
+<div class="chatbot-container">
+    <input type="checkbox" id="chat-toggle" class="chat-checkbox">
+    <label for="chat-toggle" class="chat-icon">
+      <p>Let's Chat!</p>
+    </label>
+    <div class="chatbox">
+        <div id="chatbot-container">
+            <div id="chat-icon" onclick="toggleChat()">
+                💬
+            </div>
+            <div id="chat-window">
+                <div id="chat-header">
+                    <span>Chat with Us</span>
+                    <button onclick="toggleChat()">✖</button>
+                </div>
+                <iframe src="templates/chatbot.html"></iframe>
+            </div>
+        </div>
+  </div>
+<script>
+  function toggleChat() {
+    var chatWindow = document.getElementById("chat-window");
+    chatWindow.style.display = (chatWindow.style.display === "none" || chatWindow.style.display === "") ? "flex" : "none" ;
+}  
+</script>
+    <footer>
+        <p>&copy; 2025 Veggie University. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

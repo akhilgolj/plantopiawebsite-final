@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>American Cuisine - University of Veggies</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
+        <script src="add-to-cart.js"></script>
+        <script src="checkout.js"></script>
+    </head>
+    <header>
+        <div class="header-container">
+            <div class="logo-title-container">
+
+                <img src="logo-final.jpg" alt="LOGO 2 IMAGE" class="logo">
+                <!-- <h1 class="title" style= "font-family: Iansui, cursive">Plantopia </h1> -->
+            </div>
+            <nav class="nav-right">
+                <a href="index.html">HOME</a>
+                <a href="about.html#about-us">ABOUT US</a
+                
+                <!-- Dropdown for Our Cuisines -->
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">OUR CUISINES ▼</a>
+                    <div class="dropdown-content">
+                        <a href="american.html">AMERICAN</a>
+                        <a href="Indian.html">INDIAN</a>
+                        <a href="european.html">EUROPEAN</a>
+                        <a href="chinese.html">CHINESE</a>
+                        <a href="japanese.html">JAPANESE</a>
+                        <a href="korean.html">KOREAN</a>
+                    </div>
+                </div>
+                <a href="source-bib.html">REFERENCE PAGE</a>
+                <div id="cart-icon" class="cart">🛒
+                    <span id = "cart-count" class="cart-item-count">0</span>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+</head>
+<div class = "container">
+
+        <h2>About Us</h2>
+        <div class="about-us-content">
+                <img src="logo-final.jpg" alt="About Us Image 1" class="about-image">
+                <p style= "font-family: 'Karla', Arial, Helvetica, sans-serif">"At Veggie Haven, we believe in the transformative power of plant-based cuisine for a healthier, more sustainable future. 
+                    'The true measure of our greatness lies in how we care for the world around us.
+                    ' Our menu showcases fresh, locally sourced vegetarian dishes crafted to nourish your body and the environment, 
+                    offering a dining experience that aligns with both your well-being and the planet's health.!"</p>
+        </div>
+        <div id="cart-slider" class="cart-slider">
+            <div class="cart-header">
+                <h2>Shopping Cart</h2>
+                <button id="close-cart">&times;</button>
+            </div>
+            
+            <div id="cart-items" class="cart-items"></div>
+            <div class="cart-footer">
+                <h3>Total: $<span id="cart-total">0.00</span></h3>
+                <a href="checkout.html"><button id="checkout-btn">Checkout</button></a>
+            </div>
+        </div>
+        
+    </body>
+</html>
+        

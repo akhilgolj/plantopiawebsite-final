@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Plantopia</title>
+    
+    <link rel="icon" href="images/logo-final.png" type="image/png">
+    <link rel="stylesheet" href="c.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAY2FljZCto-nKWVgZxyh9kYSoCS0b_o1U&libraries=places&callback=initMap" async defer></script>
+    <script src="add-to-cart.js" defer></script>
+    <script src="auth.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <button class="hamburger" aria-label="Toggle navigation">☰</button>
+            <div class="logo-title-container">
+                <img src="images/logo-final.png" alt="LOGO 2 IMAGE" class="logo">
+            </div>
+            <nav class="nav-right">
+                <a href="index.html">HOME</a>
+                <a href="about.html#about-us">ABOUT US</a>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">OUR CUISINES ▼</a>
+                    <div class="dropdown-content">
+                        <a href="american.html">AMERICAN</a>
+                        <a href="Indian.html">INDIAN</a>
+                        <a href="european.html">EUROPEAN</a>
+                        <a href="chinese.html">CHINESE</a>
+                        <a href="japanese.html">JAPANESE</a>
+                        <a href="korean.html">KOREAN</a>
+                    </div>
+                </div>
+                <a href="tablereserve.html">RESERVE TABLE</a>
+                <a href="source-bib.html">REFERENCE PAGE</a>
+                <div id="cart-icon" class="cart">🛒
+                    <span id="cart-count" class="cart-item-count">0</span>
+                </div>
+                <div id="user-profile" class="user-profile" style="display: none;">
+                    <div class="user-dropdown">
+                        <div class="user-name-dropbtn">
+                            <img id="user-picture" class="user-picture" src="images/guest.jpg" alt="Profile Picture">
+                            <span id="user-name"></span>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="user-dropdown-content">
+                            <a href="active-orders.html">Your Orders</a>
+                            <a href="#" id="sign-out-link" onclick="signOut()">Sign Out</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="auth-options" class="dropdown">
+                    <a href="#" class="dropbtn">SIGN IN ▼</a>
+                    <div class="dropdown-content">
+                        <div class="g_id_signin"
+                            data-type="standard"
+                            data-size="large"
+                            data-theme="outline"
+                            data-text="sign_in_with"
+                            data-shape="rectangular"
+                            data-logo_alignment="left">
+                        </div>
+                        <a href="#" id="guest-signin">Sign in as Guest</a>
+                    </div>
+                </div>
+                <div id="g_id_onload"
+                    data-client_id="393903945324-dkvoequ09ml50t2lbfjhf5rped7sijp4.apps.googleusercontent.com"
+                    data-callback="handleCredentialResponse"
+                    data-auto_prompt="false"
+                    data-ux_mode="popup"
+                    data-login_uri="http://127.0.0.1:5500">
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- Guest Sign-in Popup -->
+    <div id="guest-popup" class="popup" style="display: none;">
+        <button class="popup-close" id="guest-popup-close">×</button>
+        <div class="popup-content">
+            <h2>Sign in as Guest</h2>
+            <input type="text" id="guest-name" placeholder="Enter your name" required />
+            <button id="guest-submit">Submit</button>
+            <button id="guest-cancel">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Welcome Notification Popup -->
+    <div id="welcome-notification" class="notification" style="display: none;">
+        <div class="notification-content">
+            <span id="welcome-message"></span>
+            <button id="close-notification">×</button>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="left-section">
+            <a href="index.html" class="back-to-store"><i class="fas fa-arrow-left"></i> Back to store</a>
+
+            <div class="section" style="margin-top: 50px;">
+                <h2>Pickup or Delivery</h2>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="method" value="pickup" id="pickup-option" checked onclick="toggleMethod('pickup')">
+                        <span>Pickup</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="method" value="delivery" id="delivery-option" onclick="toggleMethod('delivery')">
+                        <span>Delivery</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="section" id="branch-selection" style="display: block;">
+                <h2>Select Pickup Branch</h2>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="branch" value="dreamwood" checked onclick="updatePickupBranch('dreamwood')">
+                        <span>Plantopia Dreamwood</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="branch" value="heavengarden" onclick="updatePickupBranch('heavengarden')">
+                        <span>Plantopia Heavengarden</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="section" id="time-section">
+                <h2 id="time-heading">Pickup Time</h2>
+                <div id="pickup-time">
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="pickup-time" value="standard" checked>
+                            <span>Standard - Ready in 15 minutes</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="pickup-time" value="schedule" onclick="openScheduleModal()">
+                            <span>Schedule for Later</span>
+                        </label>
+                    </div>
+                    <div id="pickup-time-section" class="hidden">
+                        <p><strong>Pick-Up Time:</strong> <span id="selected-pickup-time"></span></p>
+                        <i id="edit-pickup-time" class="ri-pencil-line edit-icon" onclick="openScheduleModal()"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="delivery-address" style="display: none;">
+                <h2>Delivery Address</h2>
+                <button onclick="openAddressModal()">Select Delivery Address</button>
+                <p><strong>Selected Address:</strong> <span id="selected-address">Not selected</span></p>
+                <div class="map-container" id="delivery-map-container">
+                    <!-- Iframe will be inserted here -->
+                </div>
+            </div>
+
+            <div class="section" id="pickup-address" style="display: block;">
+                <h2>Pickup Address</h2>
+                <div class="map-container">
+                    <iframe id="pickup-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3058.512395996395!2d-75.16737668460947!3d39.95258397942286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMznCsDU3JzA5LjMiTiA3NcKwMTAnMDIuNiJX!5e0!3m2!1sen!2sus!4v1630000000000" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <p class="store-address" id="pickup-branch-address">123 Dreamwood St, San Francisco, CA 94102(Plantopia Dreamwood)</p>
+            </div>
+
+            <div class="section">
+                <h2>Contact and Payment</h2>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="(xxx) xxx-xxxx" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="example@email.com">
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Payment Method</h2>
+                <div class="payment-options radio-group">
+                    <label class="payment-option credit-card">
+                        <input type="radio" name="payment" value="credit-card" required>
+                        <i class="fas fa-credit-card"></i>
+                        <span>Credit/Debit Card</span>
+                    </label>
+                    <label class="payment-option paypal">
+                        <input type="radio" name="payment" value="paypal">
+                        <i class="fab fa-paypal"></i>
+                        <span>PayPal</span>
+                    </label>
+                    <label class="payment-option" id="pay-at-counter">
+                        <input type="radio" name="payment" value="pay-at-counter">
+                        <i class="fas fa-store"></i>
+                        <span>Pay at Counter</span>
+                    </label>
+                    <label class="payment-option" id="cash-on-delivery" style="display: none;">
+                        <input type="radio" name="payment" value="cash-on-delivery">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>Cash on Delivery</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Rewards & Promos</h2>
+                <button id="promo-btn">Apply Promo Code</button>
+            </div>
+
+            <div class="section cart-items">
+                <h2>Summary</h2>
+                <div id="cart-container" class="cart-items"></div>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <label class="terms-checkbox">
+                <input type="checkbox" id="terms" required>
+                <span>By clicking this, you accept the <a href="#">terms and conditions</a></span>
+            </label>
+            <button class="place-order-btn" id="place-order-btn">PLACE PICKUP ORDER</button>
+            <div class="order-summary">
+                <p>Subtotal <span id="subtotal">$0.00</span></p>
+                <p>Estimated Tax <span id="tax">$0.00</span></p>
+                <p>Delivery Fee <span id="delivery-fee">$5.00</span></p>
+                <p>Discount <span id="discount">$0.00</span></p>
+                <p class="total">Total <span id="total">$0.00</span></p>
+                <p class="amount-due">Amount Due <span id="amount-due">$0.00</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="schedule-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="schedule-modal-title">Schedule Pickup</h2>
+            <span class="close-modal" onclick="closeScheduleModal()">×</span>
+            <label for="schedule-date">Select Date:</label>
+            <input type="date" id="schedule-date" min="">
+            <label for="schedule-time">Select Time Slot:</label>
+            <div id="time-slots" class="time-slots"></div>
+            <button class="save-schedule-btn" onclick="saveSchedule()">Save Schedule</button>
+        </div>
+    </div>
+
+    <div id="address-modal" class="modal">
+        <div class="modal-content">
+            <h2>Select Delivery Address</h2>
+            <span class="close-modal" onclick="closeAddressModal()">×</span>
+            <div id="address-map" style="height: 400px; width: 100%; margin-top: 10px;"></div>
+            <p>Click on the map to select your address, or enter it manually below:</p>
+            <p><strong>Selected:</strong> <span id="map-selected-address">Not selected</span></p>
+            <button onclick="confirmMapAddress()">Confirm Map Address</button>
+            <div style="margin-top: 10px;">
+                <input type="text" id="manual-address-input" placeholder="Enter address manually">
+                <button onclick="useManualAddress()">Use Manual Address</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="promo-message" class="promo-message">
+        <p>Promo code applied successfully! 🎉</p>
+    </div>
+
+    <div id="promo-modal" class="modal">
+        <div class="modal-content">
+            <h2>Select Promo Code</h2>
+            <span class="close-modal" onclick="closePromoModal()">×</span>
+            <div class="promo-options">
+                <button class="promo-option" data-code="SAVE10">SAVE10 (10% off, min $20)</button>
+                <button class="promo-option" data-code="BIGSAVE">BIGSAVE (FLAT $20 OFF, min $50)</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cart-slider" class="cart-slider">
+        <div class="cart-header">
+            <h2>SHOPPING CART</h2>
+            <button id="close-cart">×</button>
+        </div>
+        <div id="cart-items" class="cart-items"></div>
+        <div class="cart-footer">
+            <h3>Total: $<span id="cart-total">0.00</span></h3>
+            <a href="checkout.html"><button id="checkout-btn">CHECKOUT</button></a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 University of Veggies. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const hamburger = document.querySelector(".hamburger");
+            const navRight = document.querySelector(".nav-right");
+
+            hamburger.addEventListener("click", () => {
+                navRight.classList.toggle("active");
+            });
+        });
+    </script>
+</body>
+</html>

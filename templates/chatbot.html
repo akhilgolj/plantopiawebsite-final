@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input, button { padding: 10px; font-size: 16px; margin: 5px; }
+        #chat-container { max-width: 500px; margin: auto; }
+    </style>
+    <script>
+        async function sendMessage() {
+            let userMessage = document.getElementById("message").value;
+            if (!userMessage) {
+                alert("Please enter a message");
+                return;
+            }
+
+            try {
+                let response = await fetch("http://127.0.0.1:5000/chat", { // Ensure this matches Flask backend
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message: userMessage })
+                });
+
+                let data = await response.json();
+
+                if (response.ok) {
+                    document.getElementById("response").innerText = data.response;
+                } else {
+                    document.getElementById("response").innerText = "Error: " + data.error;
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById("response").innerText = "Server error. Check console.";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="chat-container">
+        <h2>Chatbot</h2>
+        <input type="text" id="message" placeholder="Ask me something">
+        <button onclick="sendMessage()">Send</button>
+        <p id="response"></p>
+    </div>
+</body>
+</html>

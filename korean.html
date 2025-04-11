@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Korean Cuisine - Plantopia</title>
+        <link rel="icon" href="images/logo-final.png" type="image/png">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Iansui&display=swap" rel="stylesheet">
+        <!-- Add Font Awesome for icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <!-- Add Google Sign-In script -->
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <script src="add-to-cart.js" defer></script>
+        <script src="auth.js" defer></script>
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <div class="header-container">
+                <button class="hamburger" aria-label="Toggle navigation">☰</button>
+                <div class="logo-title-container">
+                    <img src="images/logo-final.png" alt="LOGO 2 IMAGE" class="logo">
+                </div>
+                <nav class="nav-right">
+                    <a href="index.html">HOME</a>
+                    <a href="about.html#about-us">ABOUT US</a>
+                    <div class="dropdown">
+                        <a href="#" class="dropbtn">OUR CUISINES ▼</a>
+                        <div class="dropdown-content">
+                            <a href="american.html">AMERICAN</a>
+                            <a href="Indian.html">INDIAN</a>
+                            <a href="european.html">EUROPEAN</a>
+                            <a href="chinese.html">CHINESE</a>
+                            <a href="japanese.html">JAPANESE</a>
+                            <a href="korean.html">KOREAN</a>
+                        </div>
+                    </div>
+                    <a href="tablereserve.html">RESERVE TABLE</a>
+                    <a href="source-bib.html">REFERENCE PAGE</a>
+                    <div id="cart-icon" class="cart">🛒
+                        <span id="cart-count" class="cart-item-count">0</span>
+                    </div>
+                    <div id="user-profile" class="user-profile" style="display: none;">
+                        <div class="user-dropdown">
+                            <div class="user-name-dropbtn">
+                                <img id="user-picture" class="user-picture" src="" alt="Profile Picture">
+                                <span id="user-name"></span>
+                                <span class="dropdown-arrow">▼</span>
+                            </div>
+                            <div class="user-dropdown-content">
+                                <a href="active-orders.html">Your Orders</a>
+                                <a href="#" id="sign-out-link" onclick="signOut()">Sign Out</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="auth-options" class="dropdown">
+                        <a href="#" class="dropbtn">SIGN IN ▼</a>
+                        <div class="dropdown-content">
+                            <div class="g_id_signin"
+                                data-type="standard"
+                                data-size="large"
+                                data-theme="outline"
+                                data-text="sign_in_with"
+                                data-shape="rectangular"
+                                data-logo_alignment="left">
+                            </div>
+                            <a href="#" id="guest-signin">Sign in as Guest</a>
+                        </div>
+                    </div>
+                    <div id="g_id_onload"
+                        data-client_id="393903945324-dkvoequ09ml50t2lbfjhf5rped7sijp4.apps.googleusercontent.com"
+                        data-callback="handleCredentialResponse"
+                        data-auto_prompt="false"
+                        data-ux_mode="popup"
+                        data-login_uri="http://127.0.0.1:5500">
+                    </div>
+                </nav>
+            </div>
+        </header>
+    
+        <!-- Guest Sign-in Popup -->
+        <div id="guest-popup" class="popup" style="display: none;">
+            <button class="popup-close" id="guest-popup-close">×</button>
+            <div class="popup-content">
+                <h2>Sign in as Guest</h2>
+                <input type="text" id="guest-name" placeholder="Enter your name" required />
+                <button id="guest-submit">Submit</button>
+                <button id="guest-cancel">Cancel</button>
+            </div>
+        </div>
+    
+        <!-- Welcome Notification Popup -->
+        <div id="welcome-notification" class="notification" style="display: none;">
+            <div class="notification-content">
+                <span id="welcome-message"></span>
+                <button id="close-notification">×</button>
+            </div>
+        </div>
+    <div class="menu">
+        <div class="heading">
+            <h2>— KOREAN MENU —</h2>
+        </div>
+        <div class="food-items">
+            <img src="images/bibimbap.jpg" alt="Vegetarian Bibimbap">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Vegetarian Bibimbap</h5>
+                    <h5 class="price">$14.99</h5>
+                </div>
+                <p>A mixed rice dish topped with sautéed vegetables, a fried egg, and spicy gochujang sauce, all served in a hot stone bowl.</p>
+                <button class="add-to-cart-btn" data-name="Vegetarian Bibimbap" data-price="14.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/kimchi.jpg" alt="Kimchi">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Kimchi</h5>
+                    <h5 class="price">$5.99</h5>
+                </div>
+                <p>A traditional Korean side dish made from fermented vegetables, primarily napa cabbage, and seasoned with chili pepper, garlic, and ginger.</p>
+                <button class="add-to-cart-btn" data-name="Kimchi" data-price="5.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/vegetable-japchae.jpg" alt="Vegetable Japchae">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Vegetable Japchae</h5>
+                    <h5 class="price">$11.50</h5>
+                </div>
+                <p>Stir-fried glass noodles with an assortment of vegetables, such as mushrooms, spinach, and bell peppers, in a sweet and savory soy-based sauce.</p>
+                <button class="add-to-cart-btn" data-name="Vegetable Japchae" data-price="11.50">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/tofu-bulgogi.jpg" alt="Tofu Bulgogi">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Tofu Bulgogi</h5>
+                    <h5 class="price">$13.99</h5>
+                </div>
+                <p>Grilled tofu marinated in a sweet and savory bulgogi sauce, served with rice and sautéed vegetables.</p>
+                <button class="add-to-cart-btn" data-name="Tofu Bulgogi" data-price="13.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/kimchi-jjigae.jpg" alt="Kimchi Jjigae">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Kimchi Jjigae</h5>
+                    <h5 class="price">$12.99</h5>
+                </div>
+                <p>A spicy kimchi stew made with tofu, kimchi, onions, and garlic, served with a bowl of steamed rice.</p>
+                <button class="add-to-cart-btn" data-name="Kimchi Jjigae" data-price="12.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/pajeon.jpg" alt="Pajeon">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Pajeon</h5>
+                    <h5 class="price">$9.99</h5>
+                </div>
+                <p>A savory Korean pancake made with scallions, vegetables, and a light batter, served with a soy dipping sauce.</p>
+                <button class="add-to-cart-btn" data-name="Pajeon" data-price="9.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/kongguksu.jpg" alt="Kongguksu">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Kongguksu</h5>
+                    <h5 class="price">$13.50</h5>
+                </div>
+                <p>A chilled noodle soup made with a creamy, savory soybean broth, served with thin wheat noodles, cucumber, and sesame seeds.</p>
+                <button class="add-to-cart-btn" data-name="Kongguksu" data-price="13.50">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/tofu-sundubu.jpg" alt="Tofu Sundubu">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Tofu Sundubu</h5>
+                    <h5 class="price">$12.50</h5>
+                </div>
+                <p>A spicy, silky stew made with soft tofu, vegetables, and a savory broth, topped with a raw egg (optional). Perfect with rice.</p>
+                <button class="add-to-cart-btn" data-name="Tofu Sundubu" data-price="12.50">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/vegetarian-banchan.jpg" alt="Vegetarian Banchan">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Vegetarian Banchan</h5>
+                    <h5 class="price">$7.99</h5>
+                </div>
+                <p>An assortment of traditional Korean side dishes like pickled vegetables, kimchi, and marinated greens, perfect for sharing.</p>
+                <button class="add-to-cart-btn" data-name="Vegetarian Banchan" data-price="7.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/mandu.jpg" alt="Vegetarian Mandu">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Vegetarian Mandu</h5>
+                    <h5 class="price">$8.50</h5>
+                </div>
+                <p>Delicious Korean dumplings filled with a mix of vegetables and tofu, either steamed or pan-fried, and served with dipping sauce.</p>
+                <button class="add-to-cart-btn" data-name="Vegetarian Mandu" data-price="8.50">Add To Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cart-slider" class="cart-slider">
+        <div class="cart-header">
+            <h2>SHOPPING CART</h2>
+            <button id="close-cart">×</button>
+        </div>
+       
+        <div id="cart-items" class="cart-items"></div>
+        <div class="cart-footer">
+            <h3>Total: $<span id="cart-total">0.00</span></h3>
+            <a href="checkout.html"><button id="checkout-btn">CHECKOUT</button></a>
+        </div>
+    </div>
+
+
+    <footer>
+        <p>© 2025 University of Veggies. All rights reserved.</p>
+    </footer>
+</body>
+</html>

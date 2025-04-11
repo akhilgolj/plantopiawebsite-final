@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>American Cuisine - Plantopia</title>
+    <link rel="icon" href="iamges/logo-final.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Iansui&display=swap" rel="stylesheet">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Add Google Sign-In script -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="add-to-cart.js" defer></script>
+    <script src="auth.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <button class="hamburger" aria-label="Toggle navigation">☰</button>
+            <div class="logo-title-container">
+                <img src="images/logo-final.png" alt="LOGO 2 IMAGE" class="logo">
+            </div>
+            <nav class="nav-right">
+                <a href="index.html">HOME</a>
+                <a href="about.html#about-us">ABOUT US</a>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">OUR CUISINES ▼</a>
+                    <div class="dropdown-content">
+                        <a href="american.html">AMERICAN</a>
+                        <a href="Indian.html">INDIAN</a>
+                        <a href="european.html">EUROPEAN</a>
+                        <a href="chinese.html">CHINESE</a>
+                        <a href="japanese.html">JAPANESE</a>
+                        <a href="korean.html">KOREAN</a>
+                    </div>
+                </div>
+                <a href="tablereserve.html">RESERVE TABLE</a>
+                <a href="source-bib.html">REFERENCE PAGE</a>
+                <div id="cart-icon" class="cart">🛒
+                    <span id="cart-count" class="cart-item-count">0</span>
+                </div>
+                <div id="user-profile" class="user-profile" style="display: none;">
+                    <div class="user-dropdown">
+                        <div class="user-name-dropbtn">
+                            <img id="user-picture" class="user-picture" src="images/guest.jpg" alt="Profile Picture">
+                            <span id="user-name"></span>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="user-dropdown-content">
+                            <a href="active-orders.html">Your Orders</a>
+                            <a href="#" id="sign-out-link" onclick="signOut()">Sign Out</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="auth-options" class="dropdown">
+                    <a href="#" class="dropbtn">SIGN IN ▼</a>
+                    <div class="dropdown-content">
+                        <div class="g_id_signin"
+                            data-type="standard"
+                            data-size="large"
+                            data-theme="outline"
+                            data-text="sign_in_with"
+                            data-shape="rectangular"
+                            data-logo_alignment="left">
+                        </div>
+                        <a href="#" id="guest-signin">Sign in as Guest</a>
+                    </div>
+                </div>
+                <div id="g_id_onload"
+                    data-client_id="393903945324-dkvoequ09ml50t2lbfjhf5rped7sijp4.apps.googleusercontent.com"
+                    data-callback="handleCredentialResponse"
+                    data-auto_prompt="false"
+                    data-ux_mode="popup"
+                    data-login_uri="http://127.0.0.1:5500">
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Guest Sign-in Popup -->
+    <div id="guest-popup" class="popup" style="display: none;">
+        <button class="popup-close" id="guest-popup-close">×</button>
+        <div class="popup-content">
+            <h2>Sign in as Guest</h2>
+            <input type="text" id="guest-name" placeholder="Enter your name" required />
+            <button id="guest-submit">Submit</button>
+            <button id="guest-cancel">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Welcome Notification Popup -->
+    <div id="welcome-notification" class="notification" style="display: none;">
+        <div class="notification-content">
+            <span id="welcome-message"></span>
+            <button id="close-notification">×</button>
+        </div>
+    </div>
+    <div class="menu">
+        <div class="heading">
+            <h2>— AMERICAN MENU —</h2>
+        </div>
+        <div class="food-items">
+            <img src="images/veggie-burger.webp" alt="Veggie Burger">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Veggie Burger</h5>
+                    <h5 class="price">$12.99</h5>
+                </div>
+                <p>A plant-based patty made from beans, lentils, or soy, served with lettuce, tomato, and a choice of condiments on a fresh bun.</p>
+                <button class="add-to-cart-btn" data-name="Veggie Burger" data-price="12.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/mac-cheese.webp" alt="Mac and Cheese">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Mac and Cheese</h5>
+                    <h5 class="price">$10.99</h5>
+                </div>
+                <p>Creamy elbow macaroni smothered in a rich, cheesy sauce, often baked to a golden perfection with a crispy topping.</p>
+                <button class="add-to-cart-btn" data-name="Mac and Cheese" data-price="10.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/cauliflower-wings.jpg" alt="Cauliflower Buffalo Wings">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Cauliflower Buffalo Wings</h5>
+                    <h5 class="price">$9.99</h5>
+                </div>
+                <p>Crispy, battered cauliflower florets tossed in spicy buffalo sauce, served with a side of ranch or blue cheese dressing.</p>
+                <button class="add-to-cart-btn" data-name="Cauliflower Buffalo Wings" data-price="9.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/vegetable-stir.jpg" alt="Vegetable Stir Fry">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Vegetable Stir Fry</h5>
+                    <h5 class="price">$11.99</h5>
+                </div>
+                <p>A colorful mix of fresh, sautéed vegetables like bell peppers, broccoli, and carrots, served with a savory soy-based sauce and steamed rice.</p>
+                <button class="add-to-cart-btn" data-name="Vegetable Stir Fry" data-price="11.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/grilled-cheese.jpeg" alt="Grilled Cheese Sandwich">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Grilled Cheese Sandwich</h5>
+                    <h5 class="price">$8.99</h5>
+                </div>
+                <p>A golden, crispy sandwich filled with melted cheese, served with a side of tomato soup for dipping.</p>
+                <button class="add-to-cart-btn" data-name="Grilled Cheese Sandwich" data-price="8.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/quinoa-salad.jpeg" alt="Quinoa Salad">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Quinoa Salad</h5>
+                    <h5 class="price">$12.99</h5>
+                </div>
+                <p>A light, refreshing salad made with quinoa, fresh vegetables, nuts, and a tangy vinaigrette dressing.</p>
+                <button class="add-to-cart-btn" data-name="Quinoa Salad" data-price="12.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/veggie-tacos.jpg" alt="Veggie Tacos">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Veggie Tacos</h5>
+                    <h5 class="price">$10.99</h5>
+                </div>
+                <p>Soft corn tortillas filled with sautéed vegetables, beans, avocado, and topped with salsa, cilantro, and a squeeze of lime.</p>
+                <button class="add-to-cart-btn" data-name="Veggie Tacos" data-price="10.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/sweet-potato-fries.jpg" alt="Sweet Potato Fries">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Sweet Potato Fries</h5>
+                    <h5 class="price">$6.99</h5>
+                </div>
+                <p>Crispy, golden sweet potato fries served with a side of creamy dipping sauce or ketchup.</p>
+                <button class="add-to-cart-btn" data-name="Sweet Potato Fries" data-price="6.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/vegetable-lasagna.jpg" alt="Vegetable Lasagna">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Vegetable Lasagna</h5>
+                    <h5 class="price">$13.99</h5>
+                </div>
+                <p>Layers of pasta, ricotta cheese, spinach, zucchini, and marinara sauce, baked to a bubbly perfection.</p>
+                <button class="add-to-cart-btn" data-name="Vegetable Lasagna" data-price="13.99">Add To Cart</button>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="images/hummus-pita.jpg" alt="Hummus and Pita Platter">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Hummus and Pita Platter</h5>
+                    <h5 class="price">$8.99</h5>
+                </div>
+                <p>A creamy, flavorful hummus served with fresh pita bread, cucumber slices, cherry tomatoes, and olives for dipping.</p>
+                <button class="add-to-cart-btn" data-name="Hummus and Pita Platter" data-price="8.99">Add To Cart</button>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <p>© 2025 University of Veggies. All rights reserved.</p>
+    </footer>
+    <div id="cart-slider" class="cart-slider">
+        <div class="cart-header">
+            <h2>SHOPPING CART</h2>
+            <button id="close-cart">×</button>
+        </div>
+   
+        <div id="cart-items" class="cart-items"></div>
+        <div class="cart-footer">
+            <h3>Total: $<span id="cart-total">0.00</span></h3>
+            <a href="checkout.html"><button id="checkout-btn">CHECKOUT</button></a>
+        </div>
+    </div>
+
+</body>
+</html>

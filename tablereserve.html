@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Reservation - Plantopia</title>
+    <link rel="icon" href="images/logo-final.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="table.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;700&display=swap" rel="stylesheet">
+    <script src="table.js" defer></script>
+    <script src="auth.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <button class="hamburger" aria-label="Toggle navigation">☰</button>
+            <div class="logo-title-container">
+                <img src="images/logo-final.png" alt="LOGO 2 IMAGE" class="logo">
+            </div>
+            <nav class="nav-right">
+                <a href="index.html">HOME</a>
+                <a href="about.html#about-us">ABOUT US</a>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">OUR CUISINES ▼</a>
+                    <div class="dropdown-content">
+                        <a href="american.html">AMERICAN</a>
+                        <a href="Indian.html">INDIAN</a>
+                        <a href="european.html">EUROPEAN</a>
+                        <a href="chinese.html">CHINESE</a>
+                        <a href="japanese.html">JAPANESE</a>
+                        <a href="korean.html">KOREAN</a>
+                    </div>
+                </div>
+                <a href="tablereserve.html">RESERVE TABLE</a>
+                <a href="source-bib.html">REFERENCE PAGE</a>
+                <div id="cart-icon" class="cart">🛒
+                    <span id="cart-count" class="cart-item-count">0</span>
+                </div>
+                <div id="user-profile" class="user-profile" style="display: none;">
+                    <div class="user-dropdown">
+                        <div class="user-name-dropbtn">
+                            <img id="user-picture" class="user-picture" src="" alt="Profile Picture">
+                            <span id="user-name"></span>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="user-dropdown-content">
+                            <a href="active-orders.html">Your Orders</a>
+                            <a href="#" id="sign-out-link" onclick="signOut()">Sign Out</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="auth-options" class="dropdown">
+                    <a href="#" class="dropbtn">SIGN IN ▼</a>
+                    <div class="dropdown-content">
+                        <div class="g_id_signin"
+                            data-type="standard"
+                            data-size="large"
+                            data-theme="outline"
+                            data-text="sign_in_with"
+                            data-shape="rectangular"
+                            data-logo_alignment="left">
+                        </div>
+                        <a href="#" id="guest-signin">Sign in as Guest</a>
+                    </div>
+                </div>
+                <div id="g_id_onload"
+                    data-client_id="393903945324-dkvoequ09ml50t2lbfjhf5rped7sijp4.apps.googleusercontent.com"
+                    data-callback="handleCredentialResponse"
+                    data-auto_prompt="false"
+                    data-ux_mode="popup"
+                    data-login_uri="http://127.0.0.1:5500">
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+    <main class="container">
+        <section class="hero">
+            <h1 class="page-title">Reserve Your Table</h1>
+            <p class="page-subtitle">Book a spot at Plantopia.</p>
+        </section>
+
+        <div class="branch-selection">
+            <label for="branch-select">Branch:</label>
+            <select id="branch-select" onchange="updateBlueprint()">
+                <option value="dreamwood">Dreamwood</option>
+                <option value="heavengarden">Heavengarden</option>
+            </select>
+            <label for="date-select">Date:</label>
+            <input type="date" id="date-select" onchange="updateBlueprint()">
+            <label for="time-select">Time Slot:</label>
+            <select id="time-select" onchange="updateBlueprint()">
+                <option value="" disabled selected>Select time</option>
+                <option value="10:00 AM">10:00 AM</option>
+                <option value="12:00 PM">12:00 PM</option>
+                <option value="2:00 PM">2:00 PM</option>
+                <option value="6:00 PM">6:00 PM</option>
+                <option value="8:00 PM">8:00 PM</option>
+            </select>
+        </div>
+
+        <div class="content-wrapper">
+            <div id="blueprint-container" class="blueprint-container">
+                <h2 id="branch-name">Plantopia Dreamwood</h2>
+                <div class="blueprint-grid" id="blueprint-grid"></div>
+                <div class="legend">
+                    <span class="legend-item"><i class="fas fa-circle available"></i> Available</span>
+                    <span class="legend-item"><i class="fas fa-circle reserved"></i> Reserved</span>
+                </div>
+            </div>
+
+            <div class="map-section">
+                <div class="map-container">
+                    <iframe id="branch-map" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div>
+                <p id="branch-address" class="branch-address"></p>
+            </div>
+        </div>
+
+        <div id="reservation-popup" class="popup">
+            <div class="popup-content">
+                <button class="close-btn" onclick="closeReservationForm()">×</button>
+                <h2>Reserve Table</h2>
+                <form id="reservation-form" onsubmit="submitReservation(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required placeholder="e.g., John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="people">Guests</label>
+                        <input type="number" id="people" required min="1" max="12" placeholder="e.g., 4">
+                    </div>
+                    <div class="form-group terms-group">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">I agree to the <a href="#" onclick="openTermsPopup(event)">Terms and Conditions</a></label>
+                    </div>
+                    <button type="submit" class="reserve-btn">Reserve</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="terms-popup" class="popup">
+            <div class="popup-content terms-content">
+                <button class="close-btn" onclick="closeTermsPopup()">×</button>
+                <h2>Terms and Conditions</h2>
+                <div class="terms-text">
+                    <p><strong>1. Reservation Policy:</strong> Reservations are held for 15 minutes past the scheduled time. After this period, the table may be released.</p>
+                    <p><strong>2. Cancellation:</strong> Cancellations must be made at least 2 hours prior to the reservation time, or a fee may apply.</p>
+                    <p><strong>3. Guest Limits:</strong> Tables accommodate a maximum of 12 guests. Larger groups must contact us directly.</p>
+                    <p><strong>4. Conduct:</strong> Plantopia reserves the right to refuse service to anyone disrupting the dining experience.</p>
+                    <p><strong>5. Payment:</strong> A deposit may be required for reservations of 6 or more guests, refundable upon arrival.</p>
+                    <p>By reserving a table, you agree to abide by these terms.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="confirmation-modal" class="popup">
+            <div class="popup-content confirmation-content">
+                <button class="close-btn" onclick="closeConfirmationModal()">×</button>
+                <h2>Confirmed</h2>
+                <p id="confirmation-message"></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Plantopia</p>
+    </footer>
+</body>
+</html>

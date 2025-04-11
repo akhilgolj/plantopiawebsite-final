@@ -153,7 +153,7 @@ async function submitReservation(event) {
 
     try {
         console.log('Submitting reservation:', reservation);
-        const response = await fetch(`https://plantopia-1.onrender.com/api/users/${googleId}/reservations`, {
+        const response = await fetch(`https://plantopiawebsite-final.onrender.com/api/users/${googleId}/reservations`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(reservation)

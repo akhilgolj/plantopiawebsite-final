@@ -83,7 +83,7 @@ async function updateBlueprint() {
 
 async function getReservedTables(branch, date, time) {
     try {
-        const url = `https://plantopia-1.onrender.com/api/reservations/${branch}/${date}/${time}`;
+        const url = `https://plantopiawebsite-final.onrender.com/api/reservations/${branch}/${date}/${time}`;
         console.log('Fetching reserved tables from:', url);
         const response = await fetch(url);
         if (!response.ok) {

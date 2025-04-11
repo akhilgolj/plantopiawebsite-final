@@ -1,2 +1,0 @@
-MONGO_URI=mongodb+srv://plantopia:plantopia@plantopia.1b8chfp.mongodb.net/PlantopiaDB?retryWrites=true&w=majority&appName=Plantopia
-PORT=5500

@@ -1363,7 +1363,7 @@ button.btn:hover {
     left: 0px;
     right: 20px;
     display: flex;
-    justify-content: space-between;
+    gap: 14%;
     transition: background-color 0.3s ease, transform 0.2s ease;
     align-items: center;
     padding-left: 20px;
@@ -1382,7 +1382,7 @@ button.btn:hover {
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 80%; /* Full width for the button */
+    width: 180%; /* Full width for the button */
     font-family: 'Ubuntu', sans-serif;
     font-weight: 100;
     text-align: center;

@@ -620,3 +620,88 @@ hr {
     border-top: 1px solid #4CAF50;
     margin: 1rem 0;
 }
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: row; /* Keep row direction but allow wrapping */
+        flex-wrap: wrap;
+        padding: 10px 20px;
+        align-items: center;
+    }
+    .user-dropdown{
+       
+        height: 100%;
+        width: 100%;
+       
+    }
+
+    .user-profile {
+        display: flex; /* Ensure it stays visible */
+        margin-top: 0; /* Remove top margin to keep it in line */
+        width: auto; /* Adjust width to fit content */
+        order: 2; /* Ensure it appears after hamburger and logo */
+        z-index: 1100; /* Keep it above nav-right */
+        margin-left: auto; /* Push it to the right */
+    }
+
+    .nav-right {
+        display: none; /* Hidden by default on mobile */
+        flex-direction: column;
+        width: 100%;
+        background-color: #222;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        max-height: 0;
+        overflow: hidden;
+        z-index: 1050; /* Below user-profile */
+    }
+
+    .nav-right.active {
+        display: flex;
+        max-height: 800px;
+    }
+
+    .user-dropdown-content {
+        right: auto;
+        left: 0; /* Align dropdown to the left on smaller screens */
+        width: 200px; /* Fixed width for consistency */
+        z-index: 1200; /* Ensure dropdown stays above everything */
+    }
+
+    .hamburger {
+        display: block;
+        order: -1; /* Moves hamburger to the left */
+        z-index: 1150; /* Above nav-right but below user-dropdown-content */
+    }
+
+    .logo-title-container {
+        order: 0; /* Keep logo in the middle or left */
+        flex-grow: 1; /* Allow it to take available space */
+    }
+}
+
+@media (max-width: 480px) {
+    .user-profile {
+        display: flex;
+        width: auto;
+        margin-left: auto; /* Keep it on the right */
+        padding: 5px;
+    }
+
+    .user-name-dropbtn {
+        padding: 4px 8px;
+        font-size: 13px;
+    }
+
+    .user-picture {
+        width: 24px;
+        height: 24px;
+    }
+
+    .user-dropdown-content {
+        width: 180px; /* Slightly smaller for very small screens */
+        left: 0;
+        right: auto;
+    }
+}

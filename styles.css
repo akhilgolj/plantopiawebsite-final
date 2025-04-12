@@ -1379,6 +1379,7 @@ button.btn:hover {
     border-radius: 5px;
     cursor: pointer;
     display: flex;
+    width: 80%;
     align-items: center;
     gap: 8px; /* Space between icon and text */
  

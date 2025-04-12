@@ -713,6 +713,10 @@ hr {
         flex-wrap: wrap;
         position: relative;
     }
+    
+    .logo-title-container {
+        margin-left: 40%; /* Center the logo on mobile */
+    }
 
     .hamburger {
         display: block;

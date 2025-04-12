@@ -1382,9 +1382,9 @@ button.btn:hover {
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 480px; /* Full width for the button */
+    width: 80%; /* Full width for the button */
     font-family: 'Ubuntu', sans-serif;
-    font-weight: 900;
+    font-weight: 100;
     text-align: center;
     text-decoration: none;
     box-sizing: border-box;

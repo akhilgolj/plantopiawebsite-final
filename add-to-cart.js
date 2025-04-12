@@ -213,6 +213,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+            const checkoutBtn = document.getElementById('checkout-btn');
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', (e) => {
+            const totalItems = cartData.reduce((sum, item) => sum + item.quantity, 0);
+            if (totalItems <= 0) {
+                e.preventDefault(); // Prevent default navigation
+                showNotification('Add items to cart before checking out');
+            }
+        });
+    }
+
     if (placeOrderBtn) {
         placeOrderBtn.addEventListener('click', () => {
             if (validateCheckoutForm()) {

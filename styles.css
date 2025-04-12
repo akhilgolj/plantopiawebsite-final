@@ -1374,13 +1374,22 @@ button.btn:hover {
     background-color: #4caf50; /* Consistent green color */
     color: #fff; /* White text for contrast */
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     display: flex;
-    width: 80%;
     align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 80%; /* Full width for the button */
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 900;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+    margin-top: 20px; /* Space above the button */
+    /* Optional: Add some padding to the button */
     gap: 8px; /* Space between icon and text */
  
 }

@@ -31,11 +31,10 @@
     <script src="auth.js" defer></script>
 </head>
 <body>
-   <header>
+    <header>
         <div class="header-container">
-            <button class="hamburger" aria-label="Toggle navigation">☰</button>
             <div class="logo-title-container">
-                <img src="images/logo-final.png" alt="LOGO 2 IMAGE" class="logo">
+                <img src="images/logo-final.png" alt="Plantopia Logo" class="logo">
             </div>
             <nav class="nav-right">
                 <a href="index.html">HOME</a>
@@ -44,7 +43,7 @@
                     <a href="#" class="dropbtn">OUR CUISINES ▼</a>
                     <div class="dropdown-content">
                         <a href="american.html">AMERICAN</a>
-                        <a href="Indian.html">INDIAN</a>
+                        <a href="indian.html">INDIAN</a>
                         <a href="european.html">EUROPEAN</a>
                         <a href="chinese.html">CHINESE</a>
                         <a href="japanese.html">JAPANESE</a>
@@ -53,67 +52,36 @@
                 </div>
                 <a href="tablereserve.html">RESERVE TABLE</a>
                 <a href="source-bib.html">REFERENCE PAGE</a>
-                <div id="cart-icon" class="cart">🛒
-                    <span id="cart-count" class="cart-item-count">0</span>
-                </div>
+                
                 <div id="user-profile" class="user-profile" style="display: none;">
                     <div class="user-dropdown">
                         <div class="user-name-dropbtn">
-                            <img id="user-picture" class="user-picture" src="" alt="Profile Picture">
+                            <img id="user-picture" class="user-picture" src="images/guest.jpg" alt="Profile Picture">
                             <span id="user-name"></span>
                             <span class="dropdown-arrow">▼</span>
                         </div>
                         <div class="user-dropdown-content">
                             <a href="active-orders.html">Your Orders</a>
-                            <a href="#" id="sign-out-link" onclick="signOut()">Sign Out</a>
+                            <a href="#" id="sign-out-link">Sign Out</a>
                         </div>
                     </div>
                 </div>
-                <div id="auth-options" class="dropdown">
-                    <a href="#" class="dropbtn">SIGN IN ▼</a>
-                    <div class="dropdown-content">
-                       <!-- <div class="g_id_signin"
-                            data-type="standard"
-                            data-size="large"
-                            data-theme="outline"
-                            data-text="sign_in_with"
-                            data-shape="rectangular"
-                            data-logo_alignment="left">
-                        </div> -->
-                        <a href="#" id="guest-signin">Sign in as Guest</a>
-                    </div>
+                <div id="g_id_onload"
+                     data-client_id="393903945324-dkvoequ09ml50t2lbfjhf5rped7sijp4.apps.googleusercontent.com"
+                     data-callback="handleCredentialResponse"
+                     data-auto_prompt="false">
                 </div>
-                <div id="g_id_onload">
-          <!--      <div id="g_id_onload"
-                    data-client_id="393903945324-dkvoequ09ml50t2lbfjhf5rped7sijp4.apps.googleusercontent.com"
-                    data-callback="handleCredentialResponse"
-                    data-auto_prompt="false"
-                    data-ux_mode="popup"
-                    data-login_uri="http://127.0.0.1:5500"> --> 
-                </div> 
+                <div class="g_id_signin"
+                     data-type="standard"
+                     data-size="large"
+                     data-theme="outline"
+                     data-text="sign_in_with"
+                     data-shape="rectangular"
+                     data-logo_alignment="left">
+                </div>
             </nav>
         </div>
     </header>
-
-    <!-- Guest Sign-in Popup -->
-    <div id="guest-popup" class="popup" style="display: none;">
-        <button class="popup-close" id="guest-popup-close">×</button>
-        <div class="popup-content">
-            <h2>Sign in as Guest</h2>
-            <input type="text" id="guest-name" placeholder="Enter your name" required />
-            <button id="guest-submit">Submit</button>
-            <button id="guest-cancel">Cancel</button>
-        </div>
-    </div>
-
-    <!-- Welcome Notification Popup -->
-    <div id="welcome-notification" class="notification" style="display: none;">
-        <div class="notification-content">
-            <span id="welcome-message"></span>
-            <button id="close-notification">×</button>
-        </div>
-    </div>
-
 
     <div class="container">
         <section id="order-history-section">

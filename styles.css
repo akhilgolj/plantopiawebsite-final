@@ -1376,23 +1376,22 @@ button.btn:hover {
     padding: 10px 20px;
     font-size: 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px; /* More rounded corners */
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 180%; /* Full width for the button */
+    width: 100%; /* Full width for the button */
     font-family: 'Ubuntu', sans-serif;
     font-weight: 100;
     text-align: center;
     text-decoration: none;
     box-sizing: border-box;
     margin-top: 20px; /* Space above the button */
-    /* Optional: Add some padding to the button */
     gap: 8px; /* Space between icon and text */
- 
 }
+
 
 #checkout-btn:hover {
     background-color: #45a049; /* Darker green on hover */

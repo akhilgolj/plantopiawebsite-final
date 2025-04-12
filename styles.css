@@ -165,7 +165,7 @@ body {
 
 /* Adjust dropdown for sign-in options */
 #auth-options .dropdown-content {
-    min-width: 200px;
+    min-width: 100px;
 }
 
 #guest-signin {

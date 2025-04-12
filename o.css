@@ -714,9 +714,7 @@ hr {
         position: relative;
     }
     
-    .logo-title-container {
-        margin-left: 60%; /* Center the logo on mobile */
-    }
+
 
     .hamburger {
         display: block;

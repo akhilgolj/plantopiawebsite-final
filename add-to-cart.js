@@ -523,7 +523,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
-            showNotification('Order processing...');
             cartData = [];
             saveCartToLocalStorage();
             showNotification('Order placed successfully!');

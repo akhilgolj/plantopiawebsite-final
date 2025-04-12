@@ -1394,6 +1394,7 @@ button.btn:hover {
     box-sizing: border-box;
     margin-top: 20px; /* Space above the button */
     gap: 8px; /* Space between icon and text */
+    margin-right: 20px;
 }
 
 

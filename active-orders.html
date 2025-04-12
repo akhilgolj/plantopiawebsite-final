@@ -26,7 +26,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Bootstrap 4 JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
     <script src="active-orders.js" defer></script>
     <script src="auth.js" defer></script>
 </head>
@@ -35,6 +34,9 @@
         <div class="header-container">
             <div class="logo-title-container">
                 <img src="images/logo-final.png" alt="Plantopia Logo" class="logo">
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
             </div>
             <nav class="nav-right">
                 <a href="index.html">HOME</a>
@@ -52,7 +54,6 @@
                 </div>
                 <a href="tablereserve.html">RESERVE TABLE</a>
                 <a href="source-bib.html">REFERENCE PAGE</a>
-                
                 <div id="user-profile" class="user-profile" style="display: none;">
                     <div class="user-dropdown">
                         <div class="user-name-dropbtn">
@@ -90,7 +91,6 @@
         </section>
 
         <section id="reservation-history-section">
-            
             <div id="reservation-history-container"></div>
         </section>
     </div>
@@ -100,5 +100,33 @@
     </footer>
 
     <div id="notification" class="notification"></div>
+
+    <script>
+        // Hamburger menu toggle
+        $(document).ready(function() {
+            $('.hamburger').click(function() {
+                $('.nav-right').toggleClass('active');
+                $(this).find('i').toggleClass('fa-bars fa-times');
+            });
+
+            // Close menu when a link is clicked on mobile
+            $('.nav-right a').click(function() {
+                if ($(window).width() <= 768) {
+                    $('.nav-right').removeClass('active');
+                    $('.hamburger i').removeClass('fa-times').addClass('fa-bars');
+                }
+            });
+
+            // Handle dropdown on mobile to prevent closing the nav
+            $('.dropbtn').click(function(e) {
+                if ($(window).width() <= 768) {
+                    e.preventDefault();
+                    $(this).siblings('.dropdown-content').toggle();
+                }
+            });
+        });
+    </script>
+    <script src="active-orders.js" defer></script>
+    <script src="auth.js" defer></script>
 </body>
 </html>

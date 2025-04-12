@@ -452,6 +452,7 @@ footer {
     padding-bottom: 20px;
     position: relative;
     text-align: center;
+    flex-direction: column;
 }
 
 .icon-content p {
@@ -575,7 +576,9 @@ footer {
 
 @media screen and (max-width: 992px) {
     .icon-content {
-        width: 50%;
+        width: 20%;
+        margin-left: 0px;
+        margin-right: 0px;
     }
 
     .order-tracker {

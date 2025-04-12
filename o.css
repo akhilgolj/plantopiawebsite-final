@@ -794,6 +794,10 @@ hr {
         width: 60px;
     }
 
+    .logo-title-container {
+        margin-left: 40%; /* Center the logo on mobile */
+    }
+
     .user-name-dropbtn {
         font-size: 13px;
         padding: 4px 8px;

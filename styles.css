@@ -2132,6 +2132,10 @@ button{
         display: block; /* Show hamburger on mobile */
     }
 
+    .logo-title-container {
+        margin-left: 50%; /* Center the logo on mobile */
+    }
+
     .header-container {
         flex-wrap: wrap; /* Allows items to wrap if needed */
     }

@@ -767,6 +767,10 @@ footer {
     transform: rotate(180deg);
 }
 
+a {
+      text-decoration: none;
+}
+
 .accordion-content {
     display: none;
     padding: 10px 15px;
@@ -1376,15 +1380,15 @@ button.btn:hover {
     padding: 10px 20px;
     font-size: 20px;
     border: none;
-    border-radius: 8px; /* More rounded corners */
+    border-radius: 24px; /* More rounded corners */
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 100%; /* Full width for the button */
+    width: 260%; /* Full width for the button */
     font-family: 'Ubuntu', sans-serif;
-    font-weight: 100;
+    font-weight: 700;
     text-align: center;
     text-decoration: none;
     box-sizing: border-box;
@@ -1394,7 +1398,7 @@ button.btn:hover {
 
 
 #checkout-btn:hover {
-    background-color: #45a049; /* Darker green on hover */
+    background-color: #2cc332; /* Darker green on hover */
     transform: translateY(-2px); /* Slight lift effect */
 }
 
@@ -2524,6 +2528,8 @@ button{
     #checkout-btn {
         font-size: 20px;
         padding: 8px 16px;
+        width: 200px;
+        margin-right: 20px;
     }
     .about-us-content {
         flex-direction: column;

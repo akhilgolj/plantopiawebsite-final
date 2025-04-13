@@ -91,8 +91,8 @@ function showWelcomeNotification(user) {
     }
 
     const text = user.isGuest 
-        ? 'Welcome, ${user.name}! 🌟 Enjoy your visit!'
-        : 'Welcome back, ${user.name}! 😊';
+        ? Welcome, ${user.name}! 🌟 Enjoy your visit!
+        : Welcome back, ${user.name}! 😊;
     message.textContent = text;
 
     notification.style.display = 'block';

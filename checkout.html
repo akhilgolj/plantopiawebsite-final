@@ -27,8 +27,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
             justify-content: center;
             align-items: center;
         }
@@ -38,14 +38,14 @@
             border-radius: 8px;
             text-align: center;
             font-family: 'Quicksand', sans-serif;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
         .loading-spinner {
             border: 4px solid #f3f3f3;
             border-top: 4px solid #28a745;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             animation: spin 1s linear infinite;
             margin: 0 auto 10px;
         }
@@ -337,32 +337,43 @@
             const hamburger = document.querySelector(".hamburger");
             const navRight = document.querySelector(".nav-right");
 
-            hamburger.addEventListener("click", () => {
-                navRight.classList.toggle("active");
-            });
+            if (hamburger && navRight) {
+                hamburger.addEventListener("click", () => {
+                    navRight.classList.toggle("active");
+                });
+            }
 
             // Loading spinner logic
             function showLoadingModal() {
+                console.log('Showing loading modal');
                 const loadingModal = document.getElementById('loading-modal');
                 if (loadingModal) {
                     loadingModal.style.display = 'flex';
+                } else {
+                    console.error('Loading modal not found');
                 }
             }
 
             function hideLoadingModal() {
+                console.log('Hiding loading modal');
                 const loadingModal = document.getElementById('loading-modal');
                 if (loadingModal) {
                     loadingModal.style.display = 'none';
                 }
             }
 
-            // Override place order button to show loading spinner
+            // Override place order button
             const placeOrderBtn = document.getElementById('place-order-btn');
             if (placeOrderBtn) {
-                placeOrderBtn.addEventListener('click', (event) => {
-                    // Prevent default if needed, but let add-to-cart.js handle validation
+                // Remove existing listeners to avoid conflicts
+                const newBtn = placeOrderBtn.cloneNode(true);
+                placeOrderBtn.replaceWith(newBtn);
+
+                newBtn.addEventListener('click', () => {
+                    console.log('Place order button clicked');
                     if (typeof validateCheckoutForm === 'function' && !validateCheckoutForm()) {
-                        return; // Validation failed, do nothing
+                        console.log('Validation failed');
+                        return;
                     }
 
                     if (typeof placeOrder !== 'function') {
@@ -372,8 +383,9 @@
 
                     showLoadingModal();
 
-                    // Add timeout to prevent hanging
+                    // Timeout for slow server
                     const timeout = setTimeout(() => {
+                        console.log('Timeout triggered');
                         hideLoadingModal();
                         if (typeof showNotification === 'function') {
                             showNotification('Request taking too long, but your order is being processed.');
@@ -381,23 +393,63 @@
                         window.location.href = 'active-orders.html';
                     }, 10000);
 
-                    // Wrap placeOrder in a Promise to detect completion
-                    Promise.resolve()
-                        .then(() => placeOrder())
-                        .then(() => {
+                    // Intercept window.location.href to keep modal until redirect
+                    const originalLocationAssign = window.location.assign;
+                    window.location.assign = function(url) {
+                        console.log('Redirect detected:', url);
+                        if (url.includes('active-orders.html')) {
                             clearTimeout(timeout);
-                            hideLoadingModal();
-                        })
-                        .catch((err) => {
+                            // Keep modal until browser handles redirect
+                        }
+                        originalLocationAssign.call(window.location, url);
+                    };
+
+                    // Override fetch to detect completion
+                    const originalFetch = window.fetch;
+                    window.fetch = function(...args) {
+                        console.log('Fetch intercepted:', args[0]);
+                        return originalFetch.apply(this, args).then(response => {
+                            console.log('Fetch response:', response.status);
+                            if (response.ok) {
+                                return response.json().then(data => {
+                                    clearTimeout(timeout);
+                                    // Don't hide modal yet; wait for redirect
+                                    return response;
+                                });
+                            } else {
+                                clearTimeout(timeout);
+                                hideLoadingModal();
+                                throw new Error(HTTP error! Status: ${response.status});
+                            }
+                        }).catch(err => {
+                            console.log('Fetch error:', err);
                             clearTimeout(timeout);
                             hideLoadingModal();
                             if (typeof showNotification === 'function') {
                                 showNotification(Failed to place order: ${err.message});
-                            } else {
-                                console.error('Order error:', err);
                             }
+                            throw err;
                         });
+                    };
+
+                    // Call placeOrder
+                    try {
+                        console.log('Calling placeOrder');
+                        placeOrder();
+                    } catch (err) {
+                        console.error('placeOrder error:', err);
+                        clearTimeout(timeout);
+                        hideLoadingModal();
+                        if (typeof showNotification === 'function') {
+                            showNotification(Failed to place order: ${err.message});
+                        }
+                    } finally {
+                        window.fetch = originalFetch;
+                        window.location.assign = originalLocationAssign;
+                    }
                 });
+            } else {
+                console.error('place-order-btn not found');
             }
         });
     </script>

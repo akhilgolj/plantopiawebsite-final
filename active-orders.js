@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </div>
                             </div>
                             <div class="row d-flex icon-content">
-                                <i class="icon fa fa-check-square-o" aria-hidden="true"></i>
+                                <i class="icon fa fa-check-circle"></i>
                                 <div class="d-flex flex-column">
                                     <p class="font-weight-bold">Order Ready<br></p>
                                 </div>

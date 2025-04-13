@@ -13,7 +13,7 @@ const promoCodes = {
 let map, marker, geocoder;
 
 // Google Maps Embed API key (same as your JS API key)
-const GOOGLE_MAPS_API_KEY = 'AIzaSyAY2FljZCto-nKWVgZxyh9kYSoCS0b_o1U';
+const GOOGLE_MAPS_API_KEY = 'AIzaSyDKS5PXZZi8DFjGnVEPt_iDAxhjFTyuFOw';
 
 // Move initMap to global scope
 window.initMap = function() {

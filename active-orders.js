@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         orders.forEach((order, index) => {
             let trackerHTML = '';
             if (showTracker) {
-                const progress = 3; // Example progress; adjust based on order status
+                const progress = 1; // Example progress; adjust based on order status
                 trackerHTML = `
                     <div class="order-tracker">
                         <div class="row d-flex justify-content-between px-3 top">

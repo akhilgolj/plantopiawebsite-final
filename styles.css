@@ -2588,3 +2588,61 @@ button{
 }
 
 
+/* Banner image responsiveness 
+.source-banner {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    margin: 20px auto;
+    display: block;
+} */
+
+/* PDF links responsiveness */
+.source {
+    text-align: center;
+    padding: 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.2rem;
+    background-color: #2e2e2e; /* Adjust based on your theme */
+}
+
+.source a {
+    display: inline-block;
+    margin: 10px 0;
+    padding: 10px 15px;
+    color: white;
+    background-color: #4CAF50;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.source a:hover {
+    background-color: #45a049;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .source {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+
+    .source a {
+        width: 90%;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .source-banner {
+        max-width: 100%;
+        padding: 50px 10px;
+    }
+
+    .source a {
+        font-size: 0.95rem;
+        padding: 8px 12px;
+    }
+}
+

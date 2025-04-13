@@ -52,11 +52,17 @@ function updateUserProfileUI(user) {
     const authOptions = document.getElementById('auth-options');
 
     if (!userProfile || !userName || !userPicture || !authOptions) {
-        console.error('Missing DOM elements');
+        console.error('Missing DOM elements in updateUserProfileUI:', {
+            userProfile: !!userProfile,
+            userName: !!userName,
+            userPicture: !!userPicture,
+            authOptions: !!authOptions
+        });
         return;
     }
 
     if (user) {
+        console.log('Updating profile UI for user:', user.name);
         userName.textContent = user.name || 'Guest';
         userPicture.src = user.picture || 'images/guest.jpg';
         userPicture.onerror = () => {
@@ -66,6 +72,7 @@ function updateUserProfileUI(user) {
         userProfile.style.display = 'flex';
         authOptions.style.display = 'none';
     } else {
+        console.log('Clearing profile UI');
         userProfile.style.display = 'none';
         authOptions.style.display = 'block';
         userPicture.src = 'guest.jpg';
@@ -84,8 +91,8 @@ function showWelcomeNotification(user) {
     }
 
     const text = user.isGuest 
-        ? `Welcome, ${user.name}! 🌟 Enjoy your visit!` 
-        : `Welcome back, ${user.name}! 😊`;
+        ? Welcome, ${user.name}! 🌟 Enjoy your visit! 
+        : Welcome back, ${user.name}! 😊;
     message.textContent = text;
 
     notification.style.display = 'block';
@@ -199,12 +206,13 @@ function handleGuestSignIn() {
                 isGuest: true
             };
             localStorage.setItem('currentUser', JSON.stringify(guestUser));
-            popup.style.display = 'none'; // Close popup first
-            // Ensure UI updates after popup is closed
-            setTimeout(() => {
+            popup.style.display = 'none'; // Close popup
+
+            // Ensure UI updates after DOM is stable
+            requestAnimationFrame(() => {
                 updateUserProfileUI(guestUser);
                 showWelcomeNotification(guestUser);
-            }, 0); // Defer to next event loop to ensure DOM is ready
+            });
         } else {
             alert('Please enter a name!');
         }
@@ -220,10 +228,13 @@ function handleGuestSignIn() {
 
 // Load initial state
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM Content Loaded');
+    console.log('Auth.js: DOM Content Loaded');
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser) {
+        console.log('Auth.js: Found currentUser, updating UI for:', currentUser.name);
         updateUserProfileUI(currentUser);
+    } else {
+        console.log('Auth.js: No currentUser found');
     }
 
     if (typeof google !== 'undefined' && google.accounts) {

@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </div>
                             </div>
                             <div class="row d-flex icon-content">
-                                <i class="fas fa-box-open"></i>
+                                <i class="icon fas fa-box-open"></i>
                                 <div class="d-flex flex-column">
                                     <p class="font-weight-bold">Wrapping <br>It Up</p>
                                 </div>

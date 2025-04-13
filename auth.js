@@ -177,10 +177,20 @@ function handleGuestSignIn() {
     const cancelBtn = document.getElementById('guest-cancel');
     const closeBtn = document.getElementById('guest-popup-close');
 
+    if (!popup || !submitBtn || !cancelBtn || !closeBtn) {
+        console.error('Guest popup elements not found');
+        return;
+    }
+
     popup.style.display = 'block';
 
     submitBtn.onclick = () => {
-        const name = document.getElementById('guest-name').value.trim();
+        const nameInput = document.getElementById('guest-name');
+        if (!nameInput) {
+            console.error('Guest name input not found');
+            return;
+        }
+        const name = nameInput.value.trim();
         if (name) {
             const guestUser = {
                 id: 'guest_' + Date.now(),
@@ -189,9 +199,12 @@ function handleGuestSignIn() {
                 isGuest: true
             };
             localStorage.setItem('currentUser', JSON.stringify(guestUser));
-            updateUserProfileUI(guestUser);
-            showWelcomeNotification(guestUser);
-            popup.style.display = 'none';
+            popup.style.display = 'none'; // Close popup first
+            // Ensure UI updates after popup is closed
+            setTimeout(() => {
+                updateUserProfileUI(guestUser);
+                showWelcomeNotification(guestUser);
+            }, 0); // Defer to next event loop to ensure DOM is ready
         } else {
             alert('Please enter a name!');
         }
@@ -225,8 +238,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 100);
     }
 
-    document.getElementById('guest-signin').addEventListener('click', (e) => {
-        e.preventDefault();
-        handleGuestSignIn();
-    });
+    const guestSignInBtn = document.getElementById('guest-signin');
+    if (guestSignInBtn) {
+        guestSignInBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            handleGuestSignIn();
+        });
+    } else {
+        console.error('Guest sign-in button not found');
+    }
 });

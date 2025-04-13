@@ -697,8 +697,10 @@ footer {
 }
 
 .about-image {
-    width: 20%;         
+    width: 30%;         
     height: auto;      
+    display: block; /* Ensures the image is treated as a block element */
+    margin: 0 auto; /* Centers the image horizontally */
 }
 
 .container p {

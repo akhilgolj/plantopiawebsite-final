@@ -81,6 +81,24 @@
             </nav>
         </div>
     </header>
+    <!-- Guest Sign-in Popup -->
+    <div id="guest-popup" class="popup" style="display: none;">
+        <button class="popup-close" id="guest-popup-close">×</button>
+        <div class="popup-content">
+            <h2>Sign in as Guest</h2>
+            <input type="text" id="guest-name" placeholder="Enter your name" required />
+            <button id="guest-submit">Submit</button>
+            <button id="guest-cancel">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Welcome Notification Popup -->
+    <div id="welcome-notification" class="notification" style="display: none;">
+        <div class="notification-content">
+            <span id="welcome-message"></span>
+            <button id="close-notification">×</button>
+        </div>
+    </div>
 
 
     <main class="container">
